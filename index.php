@@ -2,28 +2,41 @@
 
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="<?php echo get_template_directory_uri();?>/assets/img/carousel-1.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital Solution</h1>
-                            <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free Quote</a>
-                            <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+
+            <?php
+                $args = array(
+                    'post_type' => 'sliders',
+                    'posts_per_page' => 3
+                );
+                $query = new WP_Query($args);
+                $i = 0;
+                if($query->have_posts()) {
+                    while($query->have_posts()) {
+                        $query->the_post();
+                        $i++;
+
+                        $slider_subtitle = get_field('slider_subtitle');
+                        $slider_btn_1_text = get_field('slider_btn_1_text');
+                        $slider_btn_1_url = get_field('slider_btn_1_url');
+                        $slider_btn_2_text = get_field('slider_btn_2_text');
+                        $slider_btn_2_url = get_field('slider_btn_2_url');
+                    ?>
+                    <div class="carousel-item <?php if($i == 1) { echo 'active';} ?>">
+                        <img class="w-100" src="<?php the_post_thumbnail_url();?>" alt="<?php the_title();?>">
+                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                            <div class="p-3" style="max-width: 900px;">
+                                <h5 class="text-white text-uppercase mb-3 animated slideInDown"><?php echo $slider_subtitle;?></h5>
+                                <h1 class="display-1 text-white mb-md-4 animated zoomIn"><?php the_title();?></h1>
+                                <a href="<?php echo $slider_btn_1_url;?>" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"><?php echo $slider_btn_1_text;?></a>
+                                <a href="<?php echo $slider_btn_2_url;?>" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight"><?php echo $slider_btn_2_text;?></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="<?php echo get_template_directory_uri();?>/assets/img/carousel-2.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital Solution</h1>
-                            <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free Quote</a>
-                            <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
+                    <?php
+                    }
+                    wp_reset_postdata();
+                }
+            ?>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
                 data-bs-slide="prev">
@@ -201,78 +214,39 @@
                 <h1 class="mb-0">Custom IT Solutions for Your Successful Business</h1>
             </div>
             <div class="row g-5">
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-shield-alt text-white"></i>
+
+            <?php
+                $args = array(
+                    'post_type' => 'services',
+                    'posts_per_page' => 6
+                );
+                $query = new WP_Query($args);
+                if($query->have_posts()) {
+                    while($query->have_posts()) {
+                        $query->the_post();
+
+                        $service_icon = get_field('service_icon');
+                        $service_url = get_field('service_url');
+                    ?>
+                    <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                        
+                        <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="service-icon">
+                                <i class="<?php echo $service_icon;?> text-white"></i>
+                            </div>
+                            <h4 class="mb-3"><?php the_title();?></h4>
+                            <?php the_content();?>
+                            <a class="btn btn-lg btn-primary rounded" href="<?php echo $service_url;?>">
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </a>
                         </div>
-                        <h4 class="mb-3">Cyber Security</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="fas fa-long-arrow-alt-right"></i>
-                        </a>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-chart-pie text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Data Analytics</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="fas fa-long-arrow-alt-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.9s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-code text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Web Development</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="fas fa-long-arrow-alt-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fab fa-android text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Apps Development</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="fas fa-long-arrow-alt-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-search text-white"></i>
-                        </div>
-                        <h4 class="mb-3">SEO Optimization</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="fas fa-long-arrow-alt-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.7s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-search text-white"></i>
-                        </div>
-                        <h4 class="mb-3">24/7 Support</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="fas fa-long-arrow-alt-right"></i>
-                        </a>
-                    </div>
-                </div>
+                    <?php
+                    }
+                    wp_reset_postdata();
+                }
+            ?>
+                
             </div>
         </div>
     </div>
@@ -287,26 +261,57 @@
                 <h1 class="mb-0">We are Offering Competitive Prices for Our Clients</h1>
             </div>
             <div class="row g-0">
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="bg-light rounded">
-                        <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1">Basic Plan</h4>
-                            <small class="text-uppercase">For Small Size Business</small>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <h1 class="display-5 mb-3">
-                                <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>49.00<small
-                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Month</small>
-                            </h1>
-                            <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Responsive Layout</span><i class="fa fa-times text-danger pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-2"><span>Cross-browser Support</span><i class="fa fa-times text-danger pt-1"></i></div>
-                            <a href="" class="btn btn-primary py-2 px-4 mt-4">Order Now</a>
+                
+
+            <?php
+                $args = array(
+                    'post_type' => 'price',
+                    'posts_per_page' => 3
+                );
+                $query = new WP_Query($args);
+                $i = 0;
+                if($query->have_Posts()) {
+                    while($query->have_posts()) {
+                        $query->the_post();
+                        $i++;
+
+                        $price_tagline = get_field('price_tagline');
+                        $price_currency = get_field('price_currency');
+                        $price_amount = get_field('price_amount');
+                        $price_range = get_field('price_range');
+                        $price_features = get_field('price_feature');
+                        $price_btn_text = get_field('price_btn_text');
+                        $price_btn_url = get_field('price_btn_url');
+                    ?>
+                    <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                        <div class="<?php if(($i % 2) == 0) {echo 'bg-white rounded shadow position-relative';} else {echo'bg-light rounded';} ?>">
+                            <div class="border-bottom py-4 px-5 mb-4">
+                                <h4 class="text-primary mb-1"><?php the_title();?></h4>
+                                <small class="text-uppercase"><?php echo $price_tagline;?></small>
+                            </div>
+                            <div class="p-5 pt-0">
+                                <h1 class="display-5 mb-3">
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;"><?php echo  $price_currency['value'];?></small><?php echo $price_amount;?><small
+                                        class="align-bottom" style="font-size: 16px; line-height: 40px;">/ <?php echo  $price_range['label'];?></small>
+                                </h1>
+                                <?php
+                                    foreach($price_features as $feature) {
+                                ?>
+                                        <div class="d-flex justify-content-between mb-3"><span><?php echo $feature['price_feature_title'];?></span><i class="<?php if($feature['price_feature_active']['value'] == 'hide' ) {echo 'fa fa-times text-danger';} else {echo 'fa fa-check text-primary';} ?> pt-1"></i></div>
+                                <?php
+                                    }
+                                ?>
+                                
+                                <a href="<?php echo $price_btn_url;?>" class="btn btn-primary py-2 px-4 mt-4"><?php echo $price_btn_text;?></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                    <?php
+                    }
+                }
+            ?>
+
+                <!-- <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
                     <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
                         <div class="border-bottom py-4 px-5 mb-4">
                             <h4 class="text-primary mb-1">Standard Plan</h4>
@@ -343,7 +348,7 @@
                             <a href="" class="btn btn-primary py-2 px-4 mt-4">Order Now</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
