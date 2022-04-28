@@ -4,7 +4,7 @@ function startup_setup() {
 
     load_theme_textdomain('startup', get_template_directory() . '/languages');
 
-    add_theme_support('post-thumbnails', array('sliders'));
+    add_theme_support('post-thumbnails', array('post', 'sliders', 'team'));
 
     register_nav_menus(array(
         'primary-menu' => __('Primary Menu', 'startup')
@@ -148,6 +148,78 @@ function startup_cpt() {
     );
 
     register_post_type('price', $args);
+
+    // Testimonials Custom Post
+    $labels = array(
+        'name'                  => _x( 'Testimonials', 'Post type general name', 'startup' ),
+        'singular_name'         => _x( 'Testimonial', 'Post type singular name', 'startup' ),
+        'menu_name'             => _x( 'Testimonials', 'Admin Menu text', 'startup' ),
+        'name_admin_bar'        => _x( 'Testimonials', 'Add New on Toolbar', 'startup' ),
+        'add_new'               => __( 'Add New', 'startup' ),
+        'add_new_item'          => __( 'Add New Testimonial', 'startup' ),
+        'new_item'              => __( 'New testimonial', 'startup' ),
+        'edit_item'             => __( 'Edit testimonial', 'startup' ),
+        'view_item'             => __( 'View testimonial', 'startup' ),
+        'all_items'             => __( 'All Testimonials', 'startup' ),
+        'search_items'          => __( 'Search testimonial', 'startup' ),
+        'parent_item_colon'     => __( 'Parent testimonial:', 'startup' ),
+        'not_found'             => __( 'No testimonials found.', 'startup' ),
+        'not_found_in_trash'    => __( 'No testimonials found in Trash.', 'startup' )
+    );     
+
+    $args = array(
+        'public'    => true,
+        'labels'     => $labels,
+        'menu_icon' => 'dashicons-book',
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'testimonial' ),
+        'capability_type'    => 'post',
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'supports'           => array( 'title', 'custom-fields')
+    );
+
+    register_post_type('testimonial', $args);
+
+    // Team Custom Post
+    $labels = array(
+        'name'                  => _x( 'Teams', 'Post type general name', 'startup' ),
+        'singular_name'         => _x( 'Team', 'Post type singular name', 'startup' ),
+        'menu_name'             => _x( 'Teams', 'Admin Menu text', 'startup' ),
+        'name_admin_bar'        => _x( 'Teams', 'Add New on Toolbar', 'startup' ),
+        'add_new'               => __( 'Add New', 'startup' ),
+        'add_new_item'          => __( 'Add New Team', 'startup' ),
+        'new_item'              => __( 'New Team', 'startup' ),
+        'edit_item'             => __( 'Edit Team', 'startup' ),
+        'view_item'             => __( 'View Team', 'startup' ),
+        'all_items'             => __( 'All Teams', 'startup' ),
+        'search_items'          => __( 'Search Team', 'startup' ),
+        'parent_item_colon'     => __( 'Parent Team:', 'startup' ),
+        'not_found'             => __( 'No Teams found.', 'startup' ),
+        'not_found_in_trash'    => __( 'No Teams found in Trash.', 'startup' )
+    );     
+
+    $args = array(
+        'public'    => true,
+        'labels'     => $labels,
+        'menu_icon' => 'dashicons-book',
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'team' ),
+        'capability_type'    => 'post',
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'supports'           => array( 'title', 'custom-fields', 'thumbnail')
+    );
+
+    register_post_type('team', $args);
 
 }
 add_action('init', 'startup_cpt');
