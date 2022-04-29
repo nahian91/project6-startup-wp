@@ -2,21 +2,17 @@
 
 <?php get_template_part( 'template-parts/content', 'breadcumb' ); ?>
 
-    <!-- Blog Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+<!-- Blog Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <!-- Blog list Start -->
                 <div class="col-lg-8">
                     <div class="row g-5">
                     <?php
-                $args = array(
-                    'post_type' => 'post',
-                );
-                $query = new WP_Query($args);
-                if($query->have_posts()) {
-                    while($query->have_posts()) {
-                        $query->the_post();
+                if(have_posts()) {
+                    while(have_posts()) {
+                        the_post();
                         	
                         $author_id = get_the_author_meta( 'ID' ); 
                         $author_name = get_the_author_meta( 'display_name', $author_id );                          	
