@@ -38,3 +38,22 @@ Text Domain: startup
     left: 0;
     top: 1px;
   }
+  
+.comment-notes, .comment-form label, .comment-form-cookies-consent {
+  display: none;
+}
+.comment-form input, .comment-form textarea {
+  width: 100%;
+  border: 0;
+  padding: .375rem .75rem;
+  height: 55px;
+}
+.comment-form textarea {
+  height: 150px;
+}
+.comment-form #submit {
+  background-color: #06A3DA;
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
+}

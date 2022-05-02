@@ -1,65 +1,34 @@
 <!-- Features Start -->
+
+<?php
+    $feature_subtitle = get_field('feature_subtitle', 'options');
+    $feature_title = get_field('feature_title', 'options');
+    $features = get_field('feature', 'options');
+    $feature_column = get_field('feature_column', 'options');
+?>
+
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Why Choose Us</h5>
-                <h1 class="mb-0">We Are Here to Grow Your Business Exponentially</h1>
+                <h5 class="fw-bold text-primary text-uppercase"><?php echo $feature_subtitle;?></h5>
+                <h1 class="mb-0"><?php echo $feature_title;?></h1>
             </div>
             <div class="row g-5">
-                <div class="col-lg-4">
-                    <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
-                        <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-cubes text-white"></i>
+                <?php
+                    foreach($features as $feature) {
+                ?>
+                    <div class="<?php echo $feature_column;?>">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="<?php echo $feature['feature_icon'];?> text-white"></i>
+                            </div>
+                            <h4><?php echo $feature['feature_heading'];?></h4>
+                            <p class="mb-0"><?php echo $feature['feature_description'];?> </p>
                         </div>
-                        <h4>Best In Industry</h4>
-                        <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
-                        <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-award text-white"></i>
-                        </div>
-                        <h4>Award Winning</h4>
-                        <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
-                        <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-users-cog text-white"></i>
-                        </div>
-                        <h4>Professional Staff</h4>
-                        <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
-                        <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <h4>24/7 Support</h4>
-                        <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="col-12 wow zoomIn" data-wow-delay="0.12s">
-                        <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <h4>24/7 Support</h4>
-                        <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="col-12 wow zoomIn" data-wow-delay="0.16s">
-                        <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <h4>24/7 Support</h4>
-                        <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
-                    </div>
-                </div>
+                <?php
+                    }
+                ?>
             </div>
         </div>
     </div>

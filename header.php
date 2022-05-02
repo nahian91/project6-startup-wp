@@ -24,18 +24,27 @@
         <div class="row gx-0">
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
-                    <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+012 345 6789</small>
-                    <small class="text-light"><i class="fa fa-envelope-open me-2"></i>info@example.com</small>
+
+                <?php
+                    $header_infos = get_field('header_infos', 'options');
+                    foreach($header_infos as $info) {
+                ?>
+                    <small class="me-3 text-light"><i class="<?php echo $info['header_icon'];?> me-2"></i><?php echo $info['header_text'];?></small>
+                <?php
+                    }
+                ?>
                 </div>
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
+                    <?php
+                        $header_socials = get_field('header_socials', 'options');
+                        foreach($header_socials as $social) {
+                    ?>
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="<?php echo $social['header_social_link'];?>"><i class="<?php echo $social['header_social_icon'];?> fw-normal"></i></a>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -54,33 +63,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-
-                <?php
-                    wp_nav_menu(array(
-                        'theme_location' => 'primary-menu'
-                    ));
-                ?>
-                    <!-- <ul>
-                        <li><a href="index.html" class="nav-item nav-link">Home</a></li>
-                        <li><a href="about.html" class="nav-item nav-link">About</a></li>
-                        <li><a href="service.html" class="nav-item nav-link">Services</a></li>
-                        <li><a href="#" class="nav-item nav-link">Blog</a>
-                            <ul>
-                                <li><a href="blog.html">Blog Grid</a></li>
-                                <li><a href="detail.html">Blog Detail</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#" class="nav-item nav-link">Pages</a>
-                            <ul>
-                                <li><a href="price.html">Pricing Plan</a></li>
-                                <li><a href="feature.html">Our features</a></li>
-                                <li><a href="team.html">Team Members</a></li>
-                                <li><a href="testimonial.html">Testimonial</a></li>
-                                <li><a href="quote.html">Free Quote</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html" class="nav-item nav-link">Contact</a></li>
-                    </ul>                     -->
+                    <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'primary-menu'
+                        ));
+                    ?>
                 </div>
             </div>
         </nav>
