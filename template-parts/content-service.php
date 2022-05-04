@@ -1,7 +1,8 @@
 <!-- Service Start -->
 
 <?php
-    $service_subtitle = get_field('service_subtitle', 'options');
+    if(class_exists('ACF')) {
+        $service_subtitle = get_field('service_subtitle', 'options');
     $service_title = get_field('service_title', 'options');
     $service_order = get_field('service_order', 'options');
 ?>
@@ -32,11 +33,11 @@
                         
                         <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
                             <div class="service-icon">
-                                <i class="<?php echo $service_icon;?> text-white"></i>
+                                <i class="<?php echo esc_attr($service_icon);?> text-white"></i>
                             </div>
                             <h4 class="mb-3"><?php the_title();?></h4>
                             <?php the_content();?>
-                            <a class="btn btn-lg btn-primary rounded" href="<?php echo $service_url;?>">
+                            <a class="btn btn-lg btn-primary rounded" href="<?php echo esc_url($service_url);?>">
                                 <i class="fas fa-long-arrow-alt-right"></i>
                             </a>
                         </div>
@@ -51,3 +52,5 @@
         </div>
     </div>
     <!-- Service End -->
+<?php
+    }

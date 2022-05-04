@@ -1,4 +1,6 @@
-<!-- Testimonial Start -->
+<?php
+    if(class_exists('ACF')) {
+    ?>
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px;">
@@ -23,7 +25,7 @@
                     ?>
                     <div class="testimonial-item bg-light my-4">
                         <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                            <img class="img-fluid rounded" src="<?php echo $client_image;?>" style="width: 60px; height: 60px;" >
+                            <img class="img-fluid rounded" src="<?php echo esc_url($client_image);?>" style="width: 60px; height: 60px;" >
                             <div class="ps-4">
                                 <h4 class="text-primary mb-1"><?php the_title();?></h4>
                                 <small class="text-uppercase"><?php echo $client_designation;?></small>
@@ -44,3 +46,5 @@
         </div>
     </div>
     <!-- Testimonial End -->
+<?php
+    }

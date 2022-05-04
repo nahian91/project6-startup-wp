@@ -1,7 +1,8 @@
 <!-- Features Start -->
 
 <?php
-    $feature_subtitle = get_field('feature_subtitle', 'options');
+    if(class_exists('ACF')) {
+        $feature_subtitle = get_field('feature_subtitle', 'options');
     $feature_title = get_field('feature_title', 'options');
     $features = get_field('feature', 'options');
     $feature_column = get_field('feature_column', 'options');
@@ -20,7 +21,7 @@
                     <div class="<?php echo $feature_column;?>">
                         <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
                             <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="<?php echo $feature['feature_icon'];?> text-white"></i>
+                                <i class="<?php echo esc_attr($feature['feature_icon']);?> text-white"></i>
                             </div>
                             <h4><?php echo $feature['feature_heading'];?></h4>
                             <p class="mb-0"><?php echo $feature['feature_description'];?> </p>
@@ -33,3 +34,5 @@
         </div>
     </div>
     <!-- Features Start -->
+<?php
+    }

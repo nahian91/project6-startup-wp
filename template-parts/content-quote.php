@@ -1,7 +1,8 @@
 <!-- Quote Start -->
 
 <?php
-    $quote_subtitle = get_field('quote_subtitle', 'options');
+    if(class_exists('ACF')) {
+        $quote_subtitle = get_field('quote_subtitle', 'options');
     $quote_title = get_field('quote_title', 'options');
     $quote_features = get_field('quote_features', 'options');
     $quote_description = get_field('quote_description', 'options');
@@ -24,7 +25,7 @@
                             foreach($quote_features as $feature) {
                         ?>
                             <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                                <h5 class="mb-4"><i class="<?php echo $feature['quote_icon'];?> text-primary me-3"></i><?php echo $feature['quote_name'];?></h5>
+                                <h5 class="mb-4"><i class="<?php echo esc_attr($feature['quote_icon']);?> text-primary me-3"></i><?php echo $feature['quote_name'];?></h5>
                             </div>
                         <?php
                             }
@@ -33,7 +34,7 @@
                     <p class="mb-4"><?php echo $quote_description;?></p>
                     <div class="d-flex align-items-center mt-2 wow zoomIn" data-wow-delay="0.6s">
                         <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
-                            <i class="<?php echo $quote_info_icon;?> text-white"></i>
+                            <i class="<?php echo esc_attr($quote_info_icon);?> text-white"></i>
                         </div>
                         <div class="ps-4">
                             <h5 class="mb-2"><?php echo $quote_info_subtitle;?></h5>
@@ -50,3 +51,5 @@
         </div>
     </div>
     <!-- Quote End -->
+<?php
+    }

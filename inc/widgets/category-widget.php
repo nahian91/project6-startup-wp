@@ -32,7 +32,7 @@ class startup_category_widget extends WP_Widget {
                 $cats = get_categories();
                 foreach($cats as $cat) {
             ?>
-                <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="<?php echo get_category_link( $cat->term_id );?>"><i class="fa fa-arrow-right me-2"></i><?php echo $cat->name;?> - <?php echo $cat->count;?></a>
+                <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="<?php echo esc_url(get_category_link( $cat->term_id ));?>"><i class="fa fa-arrow-right me-2"></i><?php echo $cat->name;?> - <?php echo $cat->count;?></a>
                 
             <?php
                 }

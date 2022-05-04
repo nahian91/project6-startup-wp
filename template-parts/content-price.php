@@ -1,7 +1,8 @@
 <!-- Pricing Plan Start -->
 
 <?php
-    $price_subtitle = get_field('price_subtitle', 'options');
+    if(class_exists('ACF')) {
+        $price_subtitle = get_field('price_subtitle', 'options');
     $price_title = get_field('price_title', 'options');
 ?>
 
@@ -53,7 +54,7 @@
                                     }
                                 ?>
                                 
-                                <a href="<?php echo $price_btn_url;?>" class="btn btn-primary py-2 px-4 mt-4"><?php echo $price_btn_text;?></a>
+                                <a href="<?php echo esc_url($price_btn_url);?>" class="btn btn-primary py-2 px-4 mt-4"><?php echo $price_btn_text;?></a>
                             </div>
                         </div>
                     </div>
@@ -66,3 +67,5 @@
         </div>
     </div>
     <!-- Pricing Plan End -->
+    <?php
+    }

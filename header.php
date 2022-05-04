@@ -13,9 +13,9 @@
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner"></div>
-    </div>
+    </div> -->
     <!-- Spinner End -->
 
 
@@ -26,11 +26,13 @@
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
 
                 <?php
-                    $header_infos = get_field('header_infos', 'options');
+                    if(class_exists('ACF')) {
+                        $header_infos = get_field('header_infos', 'options');
                     foreach($header_infos as $info) {
-                ?>
-                    <small class="me-3 text-light"><i class="<?php echo $info['header_icon'];?> me-2"></i><?php echo $info['header_text'];?></small>
-                <?php
+                    ?>
+                        <small class="me-3 text-light"><i class="<?php echo $info['header_icon'];?> me-2"></i><?php echo $info['header_text'];?></small>
+                    <?php
+                        }
                     }
                 ?>
                 </div>
@@ -38,11 +40,13 @@
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <?php
-                        $header_socials = get_field('header_socials', 'options');
-                        foreach($header_socials as $social) {
-                    ?>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="<?php echo $social['header_social_link'];?>"><i class="<?php echo $social['header_social_icon'];?> fw-normal"></i></a>
-                    <?php
+                        if(class_exists('ACF')) {
+                            $header_socials = get_field('header_socials', 'options');
+                            foreach($header_socials as $social) {
+                        ?>
+                            <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="<?php echo $social['header_social_link'];?>"><i class="<?php echo $social['header_social_icon'];?> fw-normal"></i></a>
+                        <?php
+                            }
                         }
                     ?>
                 </div>

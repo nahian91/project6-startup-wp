@@ -1,6 +1,6 @@
 <!-- About Start -->
 
-<?php
+<?php if(class_exists('ACF')) {
     $about_image = get_field('about_image', 'options');
     $about_subtitle = get_field('about_subtitle', 'options');
     $about_title = get_field('about_title', 'options');
@@ -36,21 +36,23 @@
                     </div>
                     <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
                         <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
-                            <i class="<?php echo $about_info_icon;?> text-white"></i>
+                            <i class="<?php echo esc_attr($about_info_icon);?> text-white"></i>
                         </div>
                         <div class="ps-4">
                             <h5 class="mb-2"><?php echo $about_info_subtitle;?></h5>
                             <h4 class="text-primary mb-0"><?php echo $about_info_title;?></h4>
                         </div>
                     </div>
-                    <a href="<?php echo $about_button_url;?>" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s"><?php echo $about_button_text;?></a>
+                    <a href="<?php echo esc_url($about_button_url);?>" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s"><?php echo $about_button_text;?></a>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="<?php echo $about_image['url'];?>" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="<?php echo esc_url($about_image['url']);?>" style="object-fit: cover;">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- About End -->
+<?php
+}

@@ -8,21 +8,29 @@ get_header();?>
 
 <?php get_template_part( 'template-parts/content', 'breadcumb' );
 
-$contact_subtitle = get_field('contact_subtitle', 'options');
-$contact_title = get_field('contact_title', 'options');
-$contact_infos = get_field('contact_infos', 'options');
+if(class_exists('ACF')) {
+    $contact_subtitle = get_field('contact_subtitle', 'options');
+    $contact_title = get_field('contact_title', 'options');
+    $contact_infos = get_field('contact_infos', 'options');
+}
 
 ?>
 
     <!-- Contact Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+            <?php
+                if(class_exists('ACF')) {
+                ?>
+                    <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase"><?php echo $contact_subtitle;?></h5>
                 <h1 class="mb-0"><?php echo $contact_title;?></h1>
             </div>
+            <?php
+                }
+            ?>
             <div class="row g-5 mb-5">
-                <?php
+                <?php if(class_exists('ACF')) {
                     foreach($contact_infos as $info) {
                 ?>
                     <div class="col-lg-4">
@@ -38,7 +46,9 @@ $contact_infos = get_field('contact_infos', 'options');
                     </div>
                 <?php
                     }
-                ?>
+               
+                }
+            ?>
             </div>
             <div class="row g-5">
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
